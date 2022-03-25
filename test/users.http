@@ -1,1 +1,11 @@
 get http://localhost:3000/users
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{    "nom" : "chaimaa",
+
+     "email": "nonnnanpn@gmail.com",
+     "password": "456",
+     "role": "AUTHOR"
+      }

@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
-    "@prisma/client": "^3.11.0",
+    "@prisma/client": "^3.11.1",
     "@types/node": "^17.0.23",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

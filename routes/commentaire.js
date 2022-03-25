@@ -1,30 +1,19 @@
-var express = require('express');
-var router = express.Router();
-const commentsRepo = require('../respositories/comments');
+const express = require('express');
+const router = express.Router();
+const { PrismaClient } = require('@prisma/client')
 
+const prisma = new PrismaClient()
 
-router.get('/', async function(req, res, next) {
-  res.send(await  commentsRepo.getAllComment())
-});
-
-router.delete('/:id',async function(req,res,next){
-    const id = req.params.id
-    res.send( await commentsRepo.deleteComment(id))
+router.get('/', async (req, res) => {
+    const result = await prisma.commentaire.findMany()
+    res.json(result)
 })
 
-router.put('/',async function(req,res,next){
-    const comment = req.body
-    res.send(await commentsRepo.updateComment(comment))
+router.post(`/`, async (req, res) => {
+    
+    const result = await prisma.commentaire.create({
+        data: req.body,
+    })
+    res.json(result)
 })
-
-router.post('/',async function(req,res,next){
-    const comment = req.body
-    res.send(await commentsRepo.addComment(comment))
-})
-
-router.get('/:id', async function(req, res, next) {
-    res.send(await commentsRepo.getComment(req.params.id))
-})
-
-
 module.exports = router;

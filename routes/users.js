@@ -20,18 +20,12 @@ router.get('/:email', async (req, res) => {
 })
 
 router.post(`/`, async (req, res) => {
-    const { nom, email, password, role }  = req.body
+    
     const result = await prisma.utilisateur.create({
-        data: {
-            nom: nom,
-            email: email,
-            password: password,
-            role: role,
-        },
+        data: req.body,
     })
     res.json(result)
 })
-
 router.put('/reset-password', async (req, res) => {
     const { email, password } = req.body
     const result = await prisma.utilisateur.update({

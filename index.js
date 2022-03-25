@@ -1,21 +1,27 @@
-const express = require('express');
-const articleRoutes = require('./routes/articles.js');
-const commantaireRoutes = require('./routes/commentaires.js');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+const articlesRoutes = require('./routes/article.js');
+const commentairesRoutes = require('./routes/commentaire.js');
 const categorieRoutes = require('./routes/categories.js');
-const userRoutes = require('./routes/users.js');
-const bodyParser = require('body-parser');
+const usersRoutes = require('./routes/users.js');
+
 const app = express();
 const port = 3000;
 
+app.use(express.json());
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
 
-app.use('/article', articleRoutes);
-app.use('/commantaire', commantaireRoutes);
-app.use('/categorie', categorieRoutes);
-app.use('/user', userRoutes);
+//Routes
+app.use('/article', articlesRoutes);
+app.use('/commentaire', commentairesRoutes);
+app.use('/categories', categorieRoutes);
+app.use('/users', usersRoutes);
 
-app.listen(port, () => {A
+app.listen(port, () => {
     console.log(` api is running on port ${port}.`);
 });

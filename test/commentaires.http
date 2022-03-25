@@ -1,1 +1,10 @@
-get http://localhost:3000/commentaires
+get http://localhost:3000/commentaire
+###
+POST http://localhost:3000/commentaire
+Content-Type: application/json
+
+{    
+     "email": "doha@gmail.com",
+     "contenu": "freedom"
+    
+      }
