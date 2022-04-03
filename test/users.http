@@ -3,9 +3,19 @@ get http://localhost:3000/users
 POST http://localhost:3000/users
 Content-Type: application/json
 
-{    "nom" : "chaimaa",
+{    "nom" : "zzzzzza",
 
-     "email": "nonnnanpn@gmail.com",
+     "email": "zzzzzzza@gmail.com",
      "password": "456",
      "role": "AUTHOR"
       }
+
+
+
+
+###
+PUT  http://localhost:3000/users/23
+
+####
+DELETE http://localhost:3000/users/23
+

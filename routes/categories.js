@@ -5,55 +5,50 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 router.get('/', async (req, res) => {
-    const categories = await prisma.categorie.findMany()
-    res.json(categories)
+    const result = await prisma.categorie.findMany()
+    res.json(result)
 })
 
 router.get('/:id', async (req, res) => {
     const { id } = req.params
-
-    const categorie = await prisma.categorie.findUnique({
+    const result = await prisma.categorie.findUnique({
         where: {
             id: Number(id),
         },
     })
-    res.json(categorie)
+    res.json(result)
 })
 
 router.post(`/`, async (req, res) => {
-    
+    const { nom }  = req.body
     const result = await prisma.categorie.create({
-        data: req.body,
+      data: {
+        nom: nom,
+      },
     })
     res.json(result)
 })
+
 router.put('/:id', async (req, res) => {
     const { id } = req.params
-    const { name} = req.body
-
-    try {
-        const post = await prisma.categorie.update({
-            where: { id: Number(id) },
-            data: {
-                name: name
-                
-            },
-        })
-
-        res.json(post)
-    } catch (error) {
-        res.json({ error: `Item with ID ${id} does not exist in the database` })
-    }
+    const { nom } = req.body
+    const result = await prisma.categorie.update({
+      where: { id: Number(id) },
+      data: { 
+        nom: nom,
+       },
+    })
+    res.json(result)
 })
 
 router.delete(`/:id`, async (req, res) => {
     const { id } = req.params
-    const categorie = await prisma.categorie.delete({
+    const result = await prisma.categorie.delete({
         where: {
             id: Number(id),
         },
     })
-    res.json(categorie)
+    res.json(result)
 })
 
 module.exports = router;

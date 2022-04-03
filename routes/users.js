@@ -9,11 +9,11 @@ router.get('/', async (req, res) => {
     res.json(result)
 })
 
-router.get('/:email', async (req, res) => {
-    const { email } = req.params
+router.get('/:id', async (req, res) => {
+    const { id } = req.params
     const result = await prisma.utilisateur.findUnique({
         where: {
-            email: email,
+            id:Number(id),
         },
     })
     res.json(result)
@@ -26,6 +26,7 @@ router.post(`/`, async (req, res) => {
     })
     res.json(result)
 })
+
 router.put('/reset-password', async (req, res) => {
     const { email, password } = req.body
     const result = await prisma.utilisateur.update({
@@ -37,26 +38,26 @@ router.put('/reset-password', async (req, res) => {
     res.json(result)
 })
 
-router.put('/reset-info', async (req, res) => {
-    const { email, nom, role } = req.body
-    const result = await prisma.utilisateur.update({
-        where: { email: email },
-        data: { 
-            nom: nom,
-            role: role,
+router.delete(`/:id`, async (req, res) => {
+    const { id } = req.params
+    const utilisateur = await prisma.utilisateur.delete({
+        where: {
+            id: Number(id),
         },
     })
-    res.json(result)
+    res.json(utilisateur)
 })
 
-router.put('/reset-info', async (req, res) => {
-    const { email, nom, role } = req.body
+
+router.put('/:id', async (req, res) => {
+    const { id } = req.params
+    const { role } = req.body
     const result = await prisma.utilisateur.update({
-        where: { email: email },
-        data: { 
-            nom: nom,
-            role: role,
-        },
+      where: { id: Number(id) },
+      data: { 
+      
+            role: role
+       },
     })
     res.json(result)
 })

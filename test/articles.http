@@ -1,1 +1,14 @@
 get http://localhost:3000/article
+###
+POST http://localhost:3000/article
+Content-Type: application/json
+
+{
+    "titre": "VVC"
+   
+  
+}
+###
+DELETE http://localhost:3000/article/1
+###
+PUT http://localhost:3000/article,/5npm 

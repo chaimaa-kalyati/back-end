@@ -8,3 +8,14 @@ Content-Type: application/json
      "contenu": "freedom"
     
       }
+
+
+
+###
+####
+PUT http://localhost:3000/commentaire/1
+
+###
+ ####
+DELETE  http://localhost:3000/commentaire/1
+
